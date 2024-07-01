@@ -14,11 +14,16 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
+function removeBookFromLibrary(index) {
+    myLibrary.splice(index, 1);
+    displayBooks();
+}
+
 function displayBooks() {
     const booksElement = document.querySelector('#books');
     booksElement.innerHTML = ''; // Clear the current content
 
-    for (const book of myLibrary) {
+    myLibrary.forEach((book, index) => {
         // Create card element
         const card = document.createElement('div');
         card.classList.add('card', 'mb-3');
@@ -60,18 +65,25 @@ function displayBooks() {
         readCheckboxDiv.appendChild(readCheckbox);
         readCheckboxDiv.appendChild(readLabel);
 
+        // Create delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('btn', 'btn-danger', 'mt-3');
+        deleteButton.textContent = 'Remove';
+        deleteButton.onclick = () => removeBookFromLibrary(index);
+
         // Append elements to card body
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardSubtitle);
         cardBody.appendChild(pages);
         cardBody.appendChild(readCheckboxDiv);
+        cardBody.appendChild(deleteButton);
 
         // Append card body to card
         card.appendChild(cardBody);
 
         // Append card to books element
         booksElement.appendChild(card);
-    }
+    });
 }
 
 // Example usage
