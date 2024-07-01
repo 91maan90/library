@@ -14,3 +14,8 @@
 .card label {
     margin-left: 0.5rem;
 }
+
+#sidebar {
+    border-left: 1px solid #ddd;
+    padding-left: 1rem;
+}

@@ -23,7 +23,33 @@
         </nav>
     </header>
 
-    <div id="books" class="container my-4"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="books" class="col-9 my-4"></div>
+            <div id="sidebar" class="col-3 my-4">
+                <h2>Add a new book</h2>
+                <form id="newBookForm">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="author" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pages" class="form-label">Pages</label>
+                        <input type="number" class="form-control" id="pages" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="read">
+                        <label class="form-check-label" for="read">Read</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

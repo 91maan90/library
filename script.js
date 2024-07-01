@@ -85,3 +85,23 @@ addBookToLibrary("Pride and Prejudice", "Jane Austen", 279, true);
 addBookToLibrary("War and Peace", "Leo Tolstoy", 1225, false);
 
 displayBooks();
+
+// Handle form submission
+document.getElementById('newBookForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Get form values
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
+
+    // Add book to library
+    addBookToLibrary(title, author, pages, read);
+
+    // Display updated book list
+    displayBooks();
+
+    // Clear form
+    document.getElementById('newBookForm').reset();
+});
