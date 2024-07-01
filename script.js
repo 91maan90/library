@@ -1,3 +1,5 @@
+const myLibrary = [];
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -8,7 +10,10 @@ function Book(title, author, pages, read) {
     };
 }
 
-const book = new Book('The Bible', 'many people', 999, false);
+function addBookToLibrary(title, author, pages, read) {
+    myLibrary.push(new Book(title, author, pages, read));
+}
 
-console.log(book.info());
-console.log(Object.getPrototypeOf(book) === Book.prototype);
+addBookToLibrary('The Bible', 'many people', 999, false);
+
+console.log(myLibrary);
