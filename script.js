@@ -5,13 +5,23 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.info = function () {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'already read' : 'not read yet'}`;
-    };
+}
+
+Book.prototype.info = function () {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'already read' : 'not read yet'}`;
+};
+
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
+};
+
+function toggleBookRead(index) {
+    myLibrary[index].toggleRead();
 }
 
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
+    displayBooks();
 }
 
 function removeBookFromLibrary(index) {
@@ -56,6 +66,7 @@ function displayBooks() {
         readCheckbox.classList.add('form-check-input');
         readCheckbox.id = `read-${book.title.replace(/\s+/g, '-')}`;
         readCheckbox.checked = book.read;
+        readCheckbox.onclick = () => toggleBookRead(index);
 
         const readLabel = document.createElement('label');
         readLabel.classList.add('form-check-label');
@@ -99,7 +110,7 @@ addBookToLibrary("War and Peace", "Leo Tolstoy", 1225, false);
 displayBooks();
 
 // Handle form submission
-document.getElementById('newBookForm').addEventListener('submit', function (event) {
+document.getElementById('newBookForm').addEventListener('submit', (event) => {
     event.preventDefault();
 
     // Get form values
@@ -110,9 +121,6 @@ document.getElementById('newBookForm').addEventListener('submit', function (even
 
     // Add book to library
     addBookToLibrary(title, author, pages, read);
-
-    // Display updated book list
-    displayBooks();
 
     // Clear form
     document.getElementById('newBookForm').reset();
